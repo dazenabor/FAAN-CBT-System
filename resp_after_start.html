@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam - CBT App</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Instructions Modal -->
+    
+
+    <div class="container">
+        <!-- Header -->
+        <header class="exam-header">
+            <h1>FAAN Promotion Exam</h1>
+            <div id="timer" role="status" aria-live="polite">Time left: --:--</div>
+        </header>
+
+        <!-- Progress bar -->
+        <div class="progress-bar">
+            <div class="progress" style="width: 2.0%;"
+                 role="progressbar" aria-valuenow="2.0"
+                 aria-valuemin="0" aria-valuemax="100">
+                2.0%
+            </div>
+        </div>
+
+        <!-- Question navigator -->
+        <div id="question-nav" class="question-nav">
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="0">
+                    <button type="submit"
+                            class="nav-btn active unanswered"
+                            aria-label="Question 1 unanswered"
+                            title="Question 1">
+                        1
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="1">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 2 unanswered"
+                            title="Question 2">
+                        2
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="2">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 3 unanswered"
+                            title="Question 3">
+                        3
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="3">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 4 unanswered"
+                            title="Question 4">
+                        4
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="4">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 5 unanswered"
+                            title="Question 5">
+                        5
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="5">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 6 unanswered"
+                            title="Question 6">
+                        6
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="6">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 7 unanswered"
+                            title="Question 7">
+                        7
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="7">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 8 unanswered"
+                            title="Question 8">
+                        8
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="8">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 9 unanswered"
+                            title="Question 9">
+                        9
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="9">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 10 unanswered"
+                            title="Question 10">
+                        10
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="10">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 11 unanswered"
+                            title="Question 11">
+                        11
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="11">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 12 unanswered"
+                            title="Question 12">
+                        12
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="12">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 13 unanswered"
+                            title="Question 13">
+                        13
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="13">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 14 unanswered"
+                            title="Question 14">
+                        14
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="14">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 15 unanswered"
+                            title="Question 15">
+                        15
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="15">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 16 unanswered"
+                            title="Question 16">
+                        16
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="16">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 17 unanswered"
+                            title="Question 17">
+                        17
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="17">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 18 unanswered"
+                            title="Question 18">
+                        18
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="18">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 19 unanswered"
+                            title="Question 19">
+                        19
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="19">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 20 unanswered"
+                            title="Question 20">
+                        20
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="20">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 21 unanswered"
+                            title="Question 21">
+                        21
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="21">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 22 unanswered"
+                            title="Question 22">
+                        22
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="22">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 23 unanswered"
+                            title="Question 23">
+                        23
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="23">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 24 unanswered"
+                            title="Question 24">
+                        24
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="24">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 25 unanswered"
+                            title="Question 25">
+                        25
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="25">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 26 unanswered"
+                            title="Question 26">
+                        26
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="26">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 27 unanswered"
+                            title="Question 27">
+                        27
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="27">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 28 unanswered"
+                            title="Question 28">
+                        28
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="28">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 29 unanswered"
+                            title="Question 29">
+                        29
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="29">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 30 unanswered"
+                            title="Question 30">
+                        30
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="30">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 31 unanswered"
+                            title="Question 31">
+                        31
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="31">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 32 unanswered"
+                            title="Question 32">
+                        32
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="32">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 33 unanswered"
+                            title="Question 33">
+                        33
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="33">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 34 unanswered"
+                            title="Question 34">
+                        34
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="34">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 35 unanswered"
+                            title="Question 35">
+                        35
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="35">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 36 unanswered"
+                            title="Question 36">
+                        36
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="36">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 37 unanswered"
+                            title="Question 37">
+                        37
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="37">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 38 unanswered"
+                            title="Question 38">
+                        38
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="38">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 39 unanswered"
+                            title="Question 39">
+                        39
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="39">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 40 unanswered"
+                            title="Question 40">
+                        40
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="40">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 41 unanswered"
+                            title="Question 41">
+                        41
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="41">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 42 unanswered"
+                            title="Question 42">
+                        42
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="42">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 43 unanswered"
+                            title="Question 43">
+                        43
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="43">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 44 unanswered"
+                            title="Question 44">
+                        44
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="44">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 45 unanswered"
+                            title="Question 45">
+                        45
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="45">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 46 unanswered"
+                            title="Question 46">
+                        46
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="46">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 47 unanswered"
+                            title="Question 47">
+                        47
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="47">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 48 unanswered"
+                            title="Question 48">
+                        48
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="48">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 49 unanswered"
+                            title="Question 49">
+                        49
+                    </button>
+                </form>
+            
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="jump_to" value="49">
+                    <button type="submit"
+                            class="nav-btn  unanswered"
+                            aria-label="Question 50 unanswered"
+                            title="Question 50">
+                        50
+                    </button>
+                </form>
+            
+        </div>
+
+        <!-- Question block -->
+        <div class="question-box">
+            <div class="question-header">
+                <h2>Question 1 of 50</h2>
+            </div>
+
+            <div class="question-text">
+                <p>Who is the immediate past MD of FAAN?</p>
+            </div>
+
+            <!-- Options form -->
+            <form method="POST" class="options-form">
+                <fieldset>
+                    <legend class="sr-only">Select your answer</legend>
+                    
+                        
+                        
+                        <label class="option">
+                            <input type="radio" name="option" value="option_a"
+                                >
+                            <span class="option-text">Mrs. Olubunmi Kuku</span>
+                        </label>
+                        
+                        <label class="option">
+                            <input type="radio" name="option" value="option_b"
+                                >
+                            <span class="option-text">Mr. Kabir Yusuf Mohammed</span>
+                        </label>
+                        
+                        <label class="option">
+                            <input type="radio" name="option" value="option_c"
+                                >
+                            <span class="option-text">Captain Rabiu Hamisu Yadudu</span>
+                        </label>
+                        
+                        <label class="option">
+                            <input type="radio" name="option" value="option_d"
+                                >
+                            <span class="option-text">Engr. Saleh Dunoma</span>
+                        </label>
+                        
+                    
+                </fieldset>
+
+                <!-- Navigation buttons -->
+                <div class="nav-buttons">
+                    <button type="submit" name="action" value="previous" class="nav-btn back-btn">
+                        ← Back
+                    </button>
+                    
+                    <button type="submit" name="action" value="next" class="nav-btn next-btn">
+                        Next →
+                    </button>
+                    
+                </div>
+            </form>
+        </div>
+
+        <!-- Logout button -->
+        <form action="/logout" method="get" class="logout-form">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+    </div>
+
+    <!-- Timer + Navigator script -->
+    <script>
+        let totalSeconds = 1800;
+        let examStarted = true;
+
+        function goBack() {
+            window.location.href = '/logout';
+        }
+
+        function updateTimer() {
+            if (!examStarted) return;
+
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            const padded = seconds < 10 ? '0' : '';
+            document.getElementById('timer').textContent =
+                `Time left: ${minutes}:${padded}${seconds}`;
+
+            if (totalSeconds === 300) {
+                alert('⚠ Warning: Only 5 minutes remaining!');
+                document.getElementById('timer').classList.add('warning');
+            }
+
+            if (totalSeconds <= 0) {
+                window.location.href = '/results';
+            } else {
+                totalSeconds--;
+                setTimeout(updateTimer, 1000);
+            }
+        }
+
+        // Start timer if instructions already shown
+        if (examStarted) {
+            updateTimer();
+        }
+
+        // Question navigator: auto-scroll to the active question and persist manual scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const nav = document.getElementById('question-nav');
+            if (!nav) return;
+
+            // If there's a previously saved scroll position, restore it
+            const saved = sessionStorage.getItem('qnav-scroll');
+            if (saved !== null) {
+                try { nav.scrollLeft = parseInt(saved, 10); } catch (e) { /* ignore */ }
+            } else {
+                // Center the active button if no saved state exists
+                const activeBtn = nav.querySelector('.nav-btn.active');
+                if (activeBtn && typeof activeBtn.scrollIntoView === 'function') {
+                    activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+            }
+
+            // Persist scroll position when the user scrolls the navigator
+            nav.addEventListener('scroll', function() {
+                sessionStorage.setItem('qnav-scroll', nav.scrollLeft);
+            }, { passive: true });
+
+            // Save nav scroll before any form submits (so next page load can restore)
+            document.querySelectorAll('form').forEach(function(form) {
+                form.addEventListener('submit', function() {
+                    sessionStorage.setItem('qnav-scroll', nav.scrollLeft);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

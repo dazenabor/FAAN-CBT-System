@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Results - CBT App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="landing-bg">
+    <div class="overlay"></div>
+        <div class="container">
+            <!-- Results Header -->
+            <div class="results-header">
+                <h1>Exam Results</h1>
+                <p>Your exam has been completed and graded</p>
+            </div>
+
+            <!-- Score Display Card -->
+            <div class="score-display">
+                <h2>Final Score</h2>
+                <div class="score-value">{{ score }}/{{ total }}</div>
+                <p class="score-percentage">
+                    {% if total %}
+                        {{ ((score / total) * 100) | round(0) }}% Correct
+                    {% else %}
+                        0% Correct
+                    {% endif %}
+                </p>
+            </div>
+
+            <!-- Score Progress Bar -->
+            {% if total %}
+                {% set pct = (score / total) * 100 %}
+            {% else %}
+                {% set pct = 0 %}
+            {% endif %}
+            <div class="progress-bar">
+                <div class="progress {% if pct >= 70 %}good{% elif pct >= 40 %}average{% else %}poor{% endif %}"
+                    style="width: {{ pct }}%;"
+                    role="progressbar"
+                    aria-valuenow="{{ pct | round(0) }}"
+                    aria-valuemin="0"
+                    aria-valuemax="100">
+                    {{ pct | round(0) }}%
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="score-stats">
+                <div class="stat-box">
+                    <div class="stat-label">Correct Answers</div>
+                    <div class="stat-value" style="color: var(--success);">{{ score }}</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Answered</div>
+                    <div class="stat-value">{{ answered }}</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Skipped</div>
+                    <div class="stat-value" style="color: var(--warning);">{{ skipped }}</div>
+                </div>
+            </div>
+
+            <!-- Detailed Results Section -->
+            <div class="results-section">
+                <h2>Review Your Answers</h2>
+                <div class="results-list">
+                    {% for r in results %}
+                    <div class="result-card {% if r.is_correct %}result-correct{% elif r.user_answer == "Unanswered" %}result-skipped{% else %}result-incorrect{% endif %}">
+                        <!-- Question Header -->
+                        <div class="result-header">
+                            <div class="result-number">Question {{ loop.index }}</div>
+                            <div class="result-badge">
+                                {% if r.user_answer == "Unanswered" %}
+                                    <span class="badge-skipped">⊘ Skipped</span>
+                                {% elif r.is_correct %}
+                                    <span class="badge-correct">✓ Correct</span>
+                                {% else %}
+                                    <span class="badge-incorrect">✕ Incorrect</span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Question Text -->
+                        <div class="result-question">
+                            <p>{{ r.question }}</p>
+                        </div>
+
+                        <!-- Options Display -->
+                        <div class="options-review">
+                            {% if r.options.option_c == "" and r.options.option_d == "" %}
+                                <!-- True/False Question -->
+                                <div class="option-item">
+                                    <span class="option-label">A.</span>
+                                    <span class="option-text">{{ r.options.option_a }}</span>
+                                </div>
+                                <div class="option-item">
+                                    <span class="option-label">B.</span>
+                                    <span class="option-text">{{ r.options.option_b }}</span>
+                                </div>
+                            {% else %}
+                                <!-- Multiple Choice Question -->
+                                <div class="option-item">
+                                    <span class="option-label">A.</span>
+                                    <span class="option-text">{{ r.options.option_a }}</span>
+                                </div>
+                                <div class="option-item">
+                                    <span class="option-label">B.</span>
+                                    <span class="option-text">{{ r.options.option_b }}</span>
+                                </div>
+                                <div class="option-item">
+                                    <span class="option-label">C.</span>
+                                    <span class="option-text">{{ r.options.option_c }}</span>
+                                </div>
+                                <div class="option-item">
+                                    <span class="option-label">D.</span>
+                                    <span class="option-text">{{ r.options.option_d }}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Answer Review -->
+                        <div class="answer-review">
+                            <div class="answer-item">
+                                <div class="answer-label">Your Answer:</div>
+                                <div class="answer-value {% if r.user_answer == "Unanswered" %}answer-blank{% else %}answer-filled{% endif %}">
+                                    {{ r.user_answer if r.user_answer != "Unanswered" else "—" }}
+                                </div>
+                            </div>
+                            <div class="answer-item">
+                                <div class="answer-label">Correct Answer:</div>
+                                <div class="answer-value answer-correct">
+                                    {{ r.correct_answer }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="results-actions">
+                <form action="{{ url_for('logout') }}" method="post" style="flex: 1;">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn-secondary" style="width: 100%">Logout</button>
+                </form>
+                <form action="{{ url_for('homepage') }}" method="get" style="flex: 1;">
+                    <button type="submit" class="btn-primary" style="width: 100%;">Return Home</button>
+                </form>
+            </div>
+        </div>
+</body>
+</html>

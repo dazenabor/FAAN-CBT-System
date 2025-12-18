@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Invalid Request</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+<body>
+    <div class="container">
+        <h1>Invalid or Expired Form Submission</h1>
+        <p>We could not verify the form submission. This often happens if your session expired or you opened a page in multiple tabs.</p>
+        <p>Please try the action again. If the problem persists, sign out and sign back in.</p>
+        <p><a href="{{ url_for('admin_users') }}">Back to Manage Users</a></p>
+    </div>
+</body>
+</html>

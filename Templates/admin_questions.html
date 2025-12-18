@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Questions - CBT App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="landing-bg">
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Manage Questions</h1>
+
+        <!-- Add new question form -->
+        <section class="form-section">
+            <h2>Add a New Question</h2>
+            <form method="POST" action="">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="action" value="add">
+
+                <div class="form-group">
+                    <label for="question">Question:</label>
+                    <textarea id="question" name="question" required rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="option_a">Option A:</label>
+                    <input type="text" id="option_a" name="option_a" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="option_b">Option B:</label>
+                    <input type="text" id="option_b" name="option_b" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="option_c">Option C:</label>
+                    <input type="text" id="option_c" name="option_c">
+                </div>
+
+                <div class="form-group">
+                    <label for="option_d">Option D:</label>
+                    <input type="text" id="option_d" name="option_d">
+                </div>
+
+                <div class="form-group">
+                    <label for="correct_option">Correct Option:</label>
+                    <select id="correct_option" name="correct_option" required>
+                        <option value="" disabled selected>Select correct option</option>
+                        <option value="option_a">Option A</option>
+                        <option value="option_b">Option B</option>
+                        <option value="option_c">Option C</option>
+                        <option value="option_d">Option D</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary">Add Question</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- Existing questions table -->
+        <section class="table-section">
+            <h2>Existing Questions</h2>
+            {% if questions %}
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Question</th>
+                        <th>Correct Option</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for q in questions %}
+                    <tr>
+                        <td>{{ q["id"] }}</td>
+                        <td class="question-cell">{{ q["question"] }}</td>
+                        <td>{{ q["correct_option"] }}</td>
+                        <td class="actions">
+                            <!-- Delete button -->
+                            <form method="POST" style="display:inline;">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="delete_id" value="{{ q['id'] }}">
+                                <button type="submit" class="action-link delete-link"
+                                        onclick="return confirm('Delete this question?')">Delete</button>
+                            </form>
+
+                            |
+
+                            <!-- Edit button -->
+                            <button type="button" class="action-link edit-link"
+                                    onclick="document.getElementById('edit{{ q['id'] }}').style.display='block';">Edit</button>
+
+                            <!-- Edit form (hidden by default) -->
+                            <div id="edit{{ q['id'] }}" style="display:none; margin-top:10px; padding:10px; border:1px solid #ddd; border-radius:4px;">
+                                <form method="POST" action="">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="action" value="edit">
+                                    <input type="hidden" name="edit_id" value="{{ q['id'] }}">
+
+                                    <div class="form-group">
+                                        <label for="q{{ q['id'] }}_question">Question:</label>
+                                        <textarea id="q{{ q['id'] }}_question" name="question" required rows="3">{{ q["question"] }}</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="q{{ q['id'] }}_a">Option A:</label>
+                                        <input type="text" id="q{{ q['id'] }}_a" name="option_a" value="{{ q['option_a'] }}" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="q{{ q['id'] }}_b">Option B:</label>
+                                        <input type="text" id="q{{ q['id'] }}_b" name="option_b" value="{{ q['option_b'] }}" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="q{{ q['id'] }}_c">Option C:</label>
+                                        <input type="text" id="q{{ q['id'] }}_c" name="option_c" value="{{ q['option_c'] }}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="q{{ q['id'] }}_d">Option D:</label>
+                                        <input type="text" id="q{{ q['id'] }}_d" name="option_d" value="{{ q['option_d'] }}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="q{{ q['id'] }}_correct">Correct Option:</label>
+                                        <select id="q{{ q['id'] }}_correct" name="correct_option" required>
+                                            <option value="option_a" {% if q['correct_option']=='option_a' %}selected{% endif %}>Option A</option>
+                                            <option value="option_b" {% if q['correct_option']=='option_b' %}selected{% endif %}>Option B</option>
+                                            <option value="option_c" {% if q['correct_option']=='option_c' %}selected{% endif %}>Option C</option>
+                                            <option value="option_d" {% if q['correct_option']=='option_d' %}selected{% endif %}>Option D</option>
+                                        </select>
+                                    </div>
+
+                                    <button type="submit" class="btn-primary">Save Changes</button>
+                                    <button type="button" class="btn-secondary" onclick="document.getElementById('edit{{ q['id'] }}').style.display='none';">Cancel</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No questions found.</p>
+            {% endif %}
+        </section>
+
+        <hr>
+
+        <p>
+            <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+        </p>
+    </div>
+</body>
+</html>

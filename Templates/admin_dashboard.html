@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - CBT App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="landing-bg">
+    <div class="overlay"></div>
+
+    <div class="login-card">
+        <h1>Admin Dashboard</h1>
+        <p class="login-subtitle">Admins can manage Questions and Users of this platform here.
+            Choose your preferred activity to continue.
+        </p>
+        
+        <div class="landing-buttons">
+            <a href="{{ url_for('admin_users') }}" class="btn btn-primary">Manage Users</a>
+            <a href="{{ url_for('admin_questions') }}" class="btn btn-primary">Manage Questions</a>
+        </div>
+
+        <br>
+        <hr>
+        <p>
+            <form method="post" action="{{ url_for('logout') }}" style="display:inline;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="btn-link" style="background:black;border:10px;padding:10px;;color:white;;cursor:pointer">Logout</button>
+            </form>
+        </p>
+    </div>
+</body>
+</html>

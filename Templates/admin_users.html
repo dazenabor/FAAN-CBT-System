@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users - CBT App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="landing-bg">
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Manage Users</h1>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for m in messages %}
+                    <div class="message" role="status">{{ m }}</div>
+                {% endfor %}
+            {% elif message %}
+                <div class="message" role="status">{{ message }}</div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Add new user form -->
+        <section class="form-section">
+            <h2>Add a New User</h2>
+            <form method="POST" action="">
+                <div class="form-group">
+                    <label for="user_id">User ID:</label>
+                    <input type="text" id="user_id" name="user_id" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pin">PIN:</label>
+                    <input type="password" id="pin" name="pin" required>
+                </div>
+
+                <button type="submit" class="btn-primary">Add User</button>
+            </form>
+        </section>
+
+        <p>
+            <a href="{{ url_for('admin_inactive_users') }}">View Inactive Users</a>
+        </p>
+
+        <hr>
+
+        <!-- Existing users table -->
+        <section class="table-section">
+            <h2>Existing Users</h2>
+            {% if users %}
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User ID</th>
+                        <th>Active</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for u in users %}
+                    <tr>
+                        <td>{{ u["id"] }}</td>
+                        <td>{{ u["user_id"] }}</td>
+                        <td>{{ "Yes" if u["active"] == 1 else "No" }}</td>
+                        <td class="actions">
+                            <form method="post" action="{{ url_for('delete_user', user_id=u['id']) }}" style="display:inline" onsubmit="return confirm('Delete this user?')">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="action-link delete-link" style="background:none;border:0;padding:0;color:inherit;cursor:pointer">Delete</button>
+                            </form>
+                            |
+                            <form method="post" action="{{ url_for('deactivate_user', user_id=u['id']) }}" style="display:inline" onsubmit="return confirm('Deactivate this user?')">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="action-link toggle-link" style="background:none;border:0;padding:0;color:inherit;cursor:pointer">Deactivate</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No users found.</p>
+            {% endif %}
+        </section>
+
+        <hr>
+
+        <p>
+            <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+        </p>
+    </div>
+</body>
+</html>

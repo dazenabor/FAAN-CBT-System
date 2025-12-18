@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBT System - Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="landing-bg">
+    <div class="overlay"></div>
+
+        <div class="landing-container">
+            <div class="landing-header"><h2>FAAN (Federal Airport Authority Nigeria) PROMOTION MOCK EXAM</h2></div>
+            <br>
+            <h1 class="landing-title">Welcome</h1>
+            <p class="landing-subtitle">
+                Our CBT system allows you to prepare and be ready for your promotional exam. 
+                We have customized the system to meet your needs and help you prepare successfully.
+            </p>
+
+            <div class="landing-buttons">
+                <a href="{{ url_for('admin_login') }}" class="landing-btn admin">ADMIN LOGIN</a>
+                <a href="{{ url_for('login') }}" class="landing-btn user">USER LOGIN</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+         <footer class="site-footer">
+            <p>Built By Cri8 Design Ltd. All rights Reserved. Contact <a href="https://cri8.design" style="color: white;">Us</a></p>
+         </footer>
+
+         
+</body>
+</html>
