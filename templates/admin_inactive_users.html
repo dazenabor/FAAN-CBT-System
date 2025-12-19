@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inactive Users - CBT App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
+</head>
 <body class="landing-bg">
     <div class="overlay"></div>
-    <div class="container">
+
+    <div class="admin-container">
         <h1>Inactive Users</h1>
 
         {% with messages = get_flashed_messages() %}
@@ -20,7 +21,7 @@
         {% endwith %}
 
         <p>
-            <a href="{{ url_for('admin_users') }}">Back to Active Users</a>
+            <a href="{{ url_for('admin_users') }}" class="btn-secondary">Back to Active Users</a>
         </p>
 
         <section class="table-section">
@@ -44,12 +45,12 @@
                         <td class="actions">
                             <form method="post" action="{{ url_for('delete_user', user_id=u['id']) }}" style="display:inline" onsubmit="return confirm('Delete this user permanently?')">
                                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="action-link delete-link" style="background:none;border:0;padding:0;color:inherit;cursor:pointer">Delete</button>
+                                <button type="submit" class="action-link delete-link">Delete</button>
                             </form>
                             |
                             <form method="post" action="{{ url_for('reactivate_user', user_id=u['id']) }}" style="display:inline">
                                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="action-link reactivate-link" style="background:none;border:0;padding:0;color:inherit;cursor:pointer">Reactivate</button>
+                                <button type="submit" class="action-link reactivate-link">Reactivate</button>
                             </form>
                         </td>
                     </tr>

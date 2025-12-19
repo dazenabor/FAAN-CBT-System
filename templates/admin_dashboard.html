@@ -9,25 +9,26 @@
 <body class="landing-bg">
     <div class="overlay"></div>
 
-    <div class="login-card">
-        <h1>Admin Dashboard</h1>
-        <p class="login-subtitle">Admins can manage Questions and Users of this platform here.
-            Choose your preferred activity to continue.
-        </p>
-        
-        <div class="landing-buttons">
-            <a href="{{ url_for('admin_users') }}" class="btn btn-primary">Manage Users</a>
-            <a href="{{ url_for('admin_questions') }}" class="btn btn-primary">Manage Questions</a>
-        </div>
+    <div class="login-container">
+        <div class="login-card">
+            <h1>Admin Dashboard</h1>
+            <p class="login-subtitle">
+                Admins can manage Questions and Users of this platform here.<br>
+                Choose your preferred activity to continue.
+            </p>
 
-        <br>
-        <hr>
-        <p>
-            <form method="post" action="{{ url_for('logout') }}" style="display:inline;">
+            <div class="landing-buttons">
+                <a href="{{ url_for('admin_users') }}" class="landing-btn dashboard-btn">Manage Users</a>
+                <a href="{{ url_for('admin_questions') }}" class="landing-btn dashboard-btn">Manage Questions</a>
+            </div>
+
+            <hr style="margin: 30px 0;">
+
+            <form method="post" action="{{ url_for('logout') }}">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <button type="submit" class="btn-link" style="background:black;border:10px;padding:10px;;color:white;;cursor:pointer">Logout</button>
+                <button type="submit" class="logout-btn">Logout</button>
             </form>
-        </p>
+        </div>
     </div>
 </body>
 </html>

@@ -24,197 +24,9 @@
 }
 
 /* ============================================================
-   MODAL STYLES (Instructions)
-   ============================================================ */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 20px;
-}
-
-.modal-content {
-    background-color: var(--bg-white);
-    border-radius: 12px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 700px;
-    max-height: 90vh;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px;
-    border-bottom: 2px solid var(--border-color);
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: white;
-    border-radius: 12px 12px 0 0;
-}
-
-.modal-header h2 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: 700;
-}
-
-.modal-close {
-    background: none;
-    border: none;
-    font-size: 32px;
-    color: white;
-    cursor: pointer;
-    padding: 0;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: var(--transition);
-}
-
-.modal-close:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.modal-body {
-    padding: 30px;
-    overflow-y: auto;
-}
-
-.instructions-box {
-    color: var(--text-primary);
-}
-
-.instructions-box h3 {
-    font-size: 22px;
-    font-weight: 700;
-    margin: 0 0 8px;
-    color: var(--text-primary);
-}
-
-.exam-meta {
-    color: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 600;
-    margin: 0 0 25px;
-    letter-spacing: 0.5px;
-}
-
-.instructions-section {
-    margin-bottom: 25px;
-}
-
-.instructions-section h4 {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0 0 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.info-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    background-color: var(--primary-light);
-    border-radius: 50%;
-    color: var(--primary);
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.warning-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    background-color: #fef3c7;
-    border-radius: 50%;
-    color: #d97706;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.instructions-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.instructions-list li {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border-color);
-    line-height: 1.7;
-    color: var(--text-secondary);
-    font-size: 14px;
-}
-
-.instructions-list li:last-child {
-    border-bottom: none;
-}
-
-.instructions-list li strong {
-    color: var(--text-primary);
-    font-weight: 600;
-}
-
-.instructions-warning {
-    background-color: var(--primary-light);
-    border-left: 4px solid var(--primary);
-    padding: 15px 16px;
-    border-radius: 6px;
-    margin-top: 20px;
-    font-size: 14px;
-    color: var(--text-primary);
-    font-weight: 500;
-}
-
-.instructions-warning p {
-    margin: 0;
-}
-
-.modal-footer {
-    display: flex;
-    gap: 12px;
-    padding: 20px 25px;
-    border-top: 1px solid var(--border-color);
-    background-color: var(--bg-light);
-    border-radius: 0 0 12px 12px;
-}
-
-.modal-footer button {
-    flex: 1;
-    padding: 12px 20px;
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-/* ============================================================
    GENERAL STYLES
    ============================================================ */
 
-/* General page styling */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
@@ -222,9 +34,27 @@ body {
     padding: 0;
     color: var(--text-primary);
     line-height: 1.6;
-    
-    /* Center container horizontally and vertically */
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+h1, h2, h3 {
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+/* Centered containers for homepage/login */
+.login-container,
+.landing-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -232,7 +62,19 @@ body {
     margin-bottom: 40px;
 }
 
-/* Main container */
+/* Admin/Exam/Results container */
+.admin-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+    background-color: var(--bg-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Main content card (used in some pages) */
 .container {
     background-color: var(--bg-white);
     padding: 40px;
@@ -244,8 +86,12 @@ body {
     border: 1px solid var(--border-color);
 }
 
-/* Header alignment: title left, progress right */
-.exam-header {
+/* ============================================================
+   HEADERS
+   ============================================================ */
+
+.exam-header,
+.results-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -254,21 +100,25 @@ body {
     border-bottom: 2px solid var(--border-color);
 }
 
-h1 {
+.exam-header h1,
+.results-header h1 {
     margin: 0;
     font-size: 28px;
     font-weight: 700;
     color: var(--text-primary);
-    letter-spacing: -0.5px;
 }
 
-.exam-progress {
-    font-size: 14px;
+.results-header p {
+    margin: 0;
+    font-size: 16px;
     color: var(--text-secondary);
     font-weight: 500;
 }
 
-/* Sticky timer */
+/* ============================================================
+   TIMER
+   ============================================================ */
+
 #timer {
     position: sticky;
     top: 0;
@@ -292,7 +142,10 @@ h1 {
     background-color: #fee2e2;
 }
 
-/* Question progress bar */
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+
 .progress-bar {
     background-color: var(--bg-light);
     border-radius: 10px;
@@ -314,7 +167,6 @@ h1 {
     line-height: 24px;
 }
 
-/* Results page progress bar colors */
 .progress.good { 
     background: linear-gradient(90deg, var(--success) 0%, #34d399 100%);
 }
@@ -325,7 +177,79 @@ h1 {
     background: linear-gradient(90deg, var(--danger) 0%, #f87171 100%);
 }
 
-/* Question block */
+/* ============================================================
+   QUESTION NAVIGATION
+   ============================================================ */
+
+.question-nav {
+    margin: 20px 0;
+    padding: 16px;
+    background-color: var(--bg-light);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+}
+
+.question-nav::-webkit-scrollbar {
+    height: 6px;
+}
+.question-nav::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+.question-nav::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.nav-btn {
+    background-color: var(--bg-white);
+    color: var(--text-secondary);
+    border: 2px solid var(--border-color);
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    flex-shrink: 0;
+}
+
+.nav-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.nav-btn.active {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px -3px rgba(0, 102, 204, 0.4);
+}
+
+.nav-btn.answered {
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.nav-btn.unanswered {
+    background-color: var(--bg-light);
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+/* ============================================================
+   QUESTION BOX
+   ============================================================ */
+
 .question-box {
     background-color: var(--bg-white);
     border-radius: 12px;
@@ -352,7 +276,10 @@ h1 {
     line-height: 1.7;
 }
 
-/* Options form and fieldset */
+/* ============================================================
+   OPTIONS
+   ============================================================ */
+
 .options-form {
     margin: 25px 0;
 }
@@ -363,14 +290,6 @@ h1 {
     margin: 0;
 }
 
-/* Options list */
-.options {
-    border: 0;
-    padding: 0;
-    margin: 0 0 20px;
-}
-
-/* Radio option styling */
 .option {
     display: flex;
     align-items: center;
@@ -409,7 +328,10 @@ h1 {
     font-size: 16px;
 }
 
-/* Navigation buttons */
+/* ============================================================
+   NAVIGATION BUTTONS
+   ============================================================ */
+
 .nav-buttons {
     display: flex;
     justify-content: space-between;
@@ -419,17 +341,21 @@ h1 {
     border-top: 1px solid var(--border-color);
 }
 
-.back-btn {
+.back-btn,
+.next-btn {
     flex: 1;
-    background-color: var(--bg-light);
-    color: var(--text-primary);
-    border: 2px solid var(--border-color);
     padding: 12px 24px;
     border-radius: 8px;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
+}
+
+.back-btn {
+    background-color: var(--bg-light);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
 }
 
 .back-btn:hover {
@@ -439,16 +365,9 @@ h1 {
 }
 
 .next-btn {
-    flex: 1;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
     box-shadow: var(--shadow-md);
 }
 
@@ -461,7 +380,10 @@ h1 {
     transform: translateY(0);
 }
 
-/* General button styling */
+/* ============================================================
+   GENERIC BUTTONS
+   ============================================================ */
+
 button {
     background-color: var(--primary);
     color: white;
@@ -517,6 +439,34 @@ button:active {
     border-color: var(--text-secondary);
 }
 
+.btn-primary:hover,
+.btn-secondary:hover,
+.landing-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Smaller buttons specifically for admin dashboard */
+.dashboard-btn {
+    padding: 5px 10px;   /* smaller padding */
+    font-size: 10px;      /* smaller text */
+    font-weight: 600;
+    border-radius: 6px;
+    background: #192028;
+    color: white;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.dashboard-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* ============================================================
+   LOGOUT
+   ============================================================ */
+
 .logout-btn {
     background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
     color: white;
@@ -537,8 +487,10 @@ button:active {
 .logout-form {
     margin-top: 25px;
 }
+/* ============================================================
+   ADMIN TABLES
+   ============================================================ */
 
-/* Admin page table */
 .admin-table {
     width: 100%;
     border-collapse: collapse;
@@ -580,9 +532,28 @@ button:active {
     border-bottom: none;
 }
 
-/* Form groups */
+.admin-table tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+
 .form-group {
     margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+input:focus {
+    outline: none;
+    border-color: #0078d7;
 }
 
 .form-group label {
@@ -621,7 +592,7 @@ button:active {
     min-height: 100px;
 }
 
-/* Form section for admin */
+/* Admin form section blocks */
 .form-section {
     background-color: var(--bg-light);
     border-radius: 10px;
@@ -647,7 +618,10 @@ button:active {
     margin-bottom: 15px;
 }
 
-/* Admin buttons and action links */
+/* ============================================================
+   ADMIN ACTION LINKS
+   ============================================================ */
+
 .btn {
     display: inline-block;
     padding: 8px 16px;
@@ -680,25 +654,6 @@ button:active {
     border-color: var(--danger);
 }
 
-.toggle-link {
-    color: var(--warning);
-    background-color: #fef3c7;
-    border: 1px solid #fcd34d;
-    padding: 6px 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 13px;
-    transition: var(--transition);
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.toggle-link:hover {
-    background-color: var(--warning);
-    color: white;
-    border-color: var(--warning);
-}
-
 .edit-link {
     color: var(--primary);
     background-color: var(--primary-light);
@@ -720,160 +675,9 @@ button:active {
     transform: translateY(-1px);
 }
 
-.btn.delete {
-    background-color: var(--danger);
-    color: white;
-    border: none;
-}
-
-.btn.delete:hover {
-    background-color: #dc2626;
-}
-
-.btn.toggle {
-    background-color: var(--warning);
-    color: white;
-    border: none;
-}
-
-.btn.toggle:hover {
-    background-color: #d97706;
-}
-
-/* Question navigation buttons */
-.question-nav {
-    margin: 20px 0;
-    padding: 16px;
-    background-color: var(--bg-light);
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    white-space: nowrap;
-    scroll-behavior: smooth;
-    user-select: none;
-}
-
-.question-nav::-webkit-scrollbar {
-    height: 6px;
-}
-
-.question-nav::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 3px;
-}
-
-.question-nav::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.nav-btn {
-    background-color: var(--bg-white);
-    color: var(--text-secondary);
-    border: 2px solid var(--border-color);
-    padding: 10px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: var(--transition);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-    flex-shrink: 0;
-}
-
-.nav-btn:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-    transform: translateY(-2px);
-}
-
-.nav-btn.active {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: white;
-    border-color: var(--primary);
-    box-shadow: 0 4px 12px -3px rgba(0, 102, 204, 0.4);
-}
-
-.nav-btn.answered {
-    background-color: var(--primary-light);
-    color: var(--primary);
-    border-color: var(--primary);
-}
-
-.nav-btn.unanswered {
-    background-color: var(--bg-light);
-    color: var(--text-secondary);
-    border-color: var(--border-color);
-}
-
-/* Error and status messages */
-.error-message {
-    background-color: #fee2e2;
-    color: var(--danger);
-    padding: 14px 16px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    border-left: 4px solid var(--danger);
-    font-weight: 500;
-    font-size: 14px;
-}
-
-.success-message {
-    background-color: #dcfce7;
-    color: var(--success);
-    padding: 14px 16px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    border-left: 4px solid var(--success);
-    font-weight: 500;
-    font-size: 14px;
-}
-
-/* Status indicators for results */
-.status-correct {
-    color: var(--success);
-    font-weight: 600;
-    display: inline-block;
-    padding: 4px 8px;
-    background-color: #dcfce7;
-    border-radius: 4px;
-}
-
-.status-incorrect {
-    color: var(--danger);
-    font-weight: 600;
-    display: inline-block;
-    padding: 4px 8px;
-    background-color: #fee2e2;
-    border-radius: 4px;
-}
-
-.status-skipped {
-    color: var(--warning);
-    font-weight: 600;
-    display: inline-block;
-    padding: 4px 8px;
-    background-color: #fef3c7;
-    border-radius: 4px;
-}
-
-/* Results section styling */
-.results-header {
-    text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--border-color);
-}
-
-.results-header h1 {
-    margin: 0 0 10px;
-    font-size: 28px;
-    color: var(--text-primary);
-}
+/* ============================================================
+   RESULTS STYLING
+   ============================================================ */
 
 .score-display {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -922,30 +726,6 @@ button:active {
     font-size: 28px;
     font-weight: 700;
     color: var(--primary);
-}
-
-/* ============================================================
-   RESULTS PAGE STYLES
-   ============================================================ */
-.results-header {
-    text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--border-color);
-}
-
-.results-header h1 {
-    margin: 0 0 8px;
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.results-header p {
-    margin: 0;
-    font-size: 16px;
-    color: var(--text-secondary);
-    font-weight: 500;
 }
 
 /* Results section */
@@ -1049,7 +829,7 @@ button:active {
     display: inline-block;
 }
 
-/* Result Question */
+/* Result question */
 .result-question {
     margin-bottom: 20px;
 }
@@ -1062,7 +842,7 @@ button:active {
     line-height: 1.6;
 }
 
-/* Options Review */
+/* Options review */
 .options-review {
     margin-bottom: 20px;
     padding: 15px;
@@ -1095,7 +875,7 @@ button:active {
     line-height: 1.5;
 }
 
-/* Answer Review */
+/* Answer review grid */
 .answer-review {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1137,7 +917,7 @@ button:active {
     color: var(--success);
 }
 
-/* Results Actions */
+/* Results actions */
 .results-actions {
     display: flex;
     gap: 12px;
@@ -1149,168 +929,155 @@ button:active {
 .results-actions form {
     flex: 1;
 }
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-        padding: 25px;
-        margin-top: 15px;
-    }
+/* ============================================================
+   MODAL STYLES (Instructions)
+   ============================================================ */
 
-    h1 {
-        font-size: 24px;
-    }
-
-    .exam-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .question-text p {
-        font-size: 16px;
-    }
-
-    .nav-buttons {
-        gap: 8px;
-        margin-top: 20px;
-    }
-
-    .nav-buttons button {
-        font-size: 14px;
-        padding: 10px 16px;
-    }
-
-    .question-nav {
-        padding: 12px;
-        gap: 6px;
-    }
-
-    .nav-btn {
-        padding: 8px 12px;
-        font-size: 13px;
-        min-width: 36px;
-    }
-
-    .admin-table th,
-    .admin-table td {
-        padding: 10px 8px;
-        font-size: 13px;
-    }
-
-    .score-stats {
-        grid-template-columns: 1fr;
-    }
-
-    #timer {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .form-section {
-        padding: 15px;
-    }
-
-    .option {
-        padding: 12px;
-        font-size: 14px;
-    }
-
-    button,
-    .btn-primary,
-    .btn-secondary {
-        width: 100%;
-        margin-bottom: 8px;
-    }
-
-    /* Modal responsive */
-    .modal-overlay {
-        padding: 20px;
-    }
-
-    .modal-content {
-        max-height: 100%;
-        border-radius: 12px;
-    }
-
-    .modal-header {
-        padding: 20px;
-    }
-
-    .modal-header h2 {
-        font-size: 20px;
-    }
-
-    .modal-body {
-        padding: 20px;
-    }
-
-    .instructions-section h4 {
-        font-size: 14px;
-    }
-
-    .instructions-list li {
-        font-size: 13px;
-        padding: 10px 0;
-    }
-
-    .exam-meta {
-        font-size: 12px;
-    }
-
-    .modal-footer {
-        flex-direction: column;
-        padding: 15px 20px;
-    }
-
-    .modal-footer button {
-        width: 100%;
-    }
-
-    /* Results page responsive */
-    .results-header h1 {
-        font-size: 24px;
-    }
-
-    .result-card {
-        padding: 15px;
-    }
-
-    .result-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-        padding-bottom: 10px;
-    }
-
-    .answer-review {
-        grid-template-columns: 1fr;
-    }
-
-    .results-actions {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .results-actions form {
-        width: 100%;
-    }
-
-    .option-label {
-        min-width: 20px;
-    }
-
-    .option-text {
-        font-size: 13px;
-    }
-
-    .result-question p {
-        font-size: 15px;
-    }
+   .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
 }
 
-/* Adding new styles
+.modal-content {
+    background-color: var(--bg-white);
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
 
-/* Full background image */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    border-bottom: 2px solid var(--border-color);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    border-radius: 12px 12px 0 0;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.instructions-box h3 { font-size: 22px; font-weight: 700; margin: 0 0 8px; }
+.exam-meta { color: var(--text-secondary); font-size: 14px; font-weight: 600; margin: 0 0 25px; letter-spacing: 0.5px; }
+.instructions-section { margin-bottom: 25px; }
+.instructions-section h4 { font-size: 16px; font-weight: 700; color: var(--text-primary); margin: 0 0 15px; display: flex; align-items: center; gap: 10px; }
+.info-icon, .warning-icon { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; font-size: 14px; font-weight: bold; }
+.info-icon { background-color: var(--primary-light); color: var(--primary); }
+.warning-icon { background-color: #fef3c7; color: #d97706; }
+.instructions-list { list-style: none; padding: 0; margin: 0; }
+.instructions-list li { padding: 12px 0; border-bottom: 1px solid var(--border-color); line-height: 1.7; color: var(--text-secondary); font-size: 14px; }
+.instructions-list li:last-child { border-bottom: none; }
+.instructions-list li strong { color: var(--text-primary); font-weight: 600; }
+.instructions-warning { background-color: var(--primary-light); border-left: 4px solid var(--primary); padding: 15px 16px; border-radius: 6px; margin-top: 20px; font-size: 14px; color: var(--text-primary); font-weight: 500; }
+.instructions-warning p { margin: 0; }
+.modal-footer { display: flex; gap: 12px; padding: 20px 25px; border-top: 1px solid var(--border-color); background-color: var(--bg-light); border-radius: 0 0 12px 12px; }
+.modal-footer button { flex: 1; padding: 12px 20px; font-size: 15px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: var(--transition); }
+
+/* ============================================================
+   ERROR/SUCCESS MESSAGES
+   ============================================================ */
+
+.error-message {
+    background-color: #fee2e2;
+    color: var(--danger);
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--danger);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.success-message {
+    background-color: #dcfce7;
+    color: var(--success);
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--success);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .admin-container { padding: 16px; margin: 20px auto; }
+    .container { width: 95%; padding: 25px; margin-top: 15px; }
+    h1 { font-size: 24px; }
+    .exam-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .question-text p { font-size: 16px; }
+    .nav-buttons { gap: 8px; margin-top: 20px; }
+    .nav-buttons button { font-size: 14px; padding: 10px 16px; }
+    .question-nav { padding: 12px; gap: 6px; }
+    .nav-btn { padding: 8px 12px; font-size: 13px; min-width: 36px; }
+    .admin-table th, .admin-table td { padding: 10px 8px; font-size: 13px; }
+    .score-stats { grid-template-columns: 1fr; }
+    #timer { font-size: 14px; padding: 10px; }
+    .form-section { padding: 15px; }
+    .option { padding: 12px; font-size: 14px; }
+    button, .btn-primary, .btn-secondary { width: 100%; margin-bottom: 8px; }
+    .results-header h1 { font-size: 24px; }
+    .result-card { padding: 15px; }
+    .result-header { flex-direction: column; align-items: flex-start; gap: 10px; padding-bottom: 10px; }
+    .answer-review { grid-template-columns: 1fr; }
+    .results-actions { flex-direction: column; gap: 10px; }
+    .results-actions form { width: 100%; }
+    .option-label { min-width: 20px; }
+    .option-text { font-size: 13px; }
+    .result-question p { font-size: 15px; }
+}
+
+/* ============================================================
+   BACKGROUND & OVERLAY
+   ============================================================ */
+
 .landing-bg {
     background-image: url('/static/bg_exam.png'); /* replace with your image */
     background-size: cover;
@@ -1320,7 +1087,6 @@ button:active {
     min-height: 100vh;
 }
 
-/* Green overlay */
 .overlay {
     position: fixed;
     top: 0;
@@ -1332,7 +1098,16 @@ button:active {
     z-index: 2;
 }
 
-/* Centered content */
+/* Ensure content sits above overlay */
+body > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================================
+   HOMEPAGE HERO
+   ============================================================ */
+
 .landing-container {
     position: relative;
     z-index: 2;
@@ -1343,7 +1118,6 @@ button:active {
     padding: 40px 20px;
 }
 
-/* Title */
 .landing-title {
     font-size: 48px;
     font-weight: 800;
@@ -1351,22 +1125,18 @@ button:active {
     color: white;
 }
 
-/* Header */
 .landing-header {
     font-size: 16px;
     margin-top: 20%;
     text-justify: center;
 }
 
-
-/* Subtitle */
 .landing-subtitle {
     font-size: 18px;
     margin-bottom: 40px;
     opacity: 0.9;
 }
 
-/* Buttons */
 .landing-buttons {
     display: flex;
     justify-content: center;
@@ -1383,27 +1153,18 @@ button:active {
     transition: 0.3s;
 }
 
-.landing-btn.admin {
-    background: #192028;
-}
-
-.landing-btn.user {
-    background: #192028;
-}
+.landing-btn.admin { background: #192028; }
+.landing-btn.user { background: #192028; }
 
 .landing-btn:hover {
     transform: translateY(-3px);
     opacity: 0.9;
 }
 
-/* Credit 
-.credit {
-    margin-top: 40%;
-    font-size: 14px;
-    opacity: 1.0;
-}
-*/
-/* Login card */
+/* ============================================================
+   LOGIN CARD
+   ============================================================ */
+
 .login-card {
     position: absolute;
     z-index: 2;
@@ -1434,28 +1195,25 @@ button:active {
     opacity: 0.8;
 }
 
-body > * {
-    position: relative;
-    z-index: 2;
-}
-
-/* New Addtion for footer */
-body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-}
+/* ============================================================
+   FOOTER
+   ============================================================ */
 
 .site-footer {
-    margin-top: auto;
+    margin-top: 40px;
     width: 100%;
     text-align: center;
     padding: 15px 0;
     background: rgba(0,0,0,0.6);
     color: #fff;
+    border-radius: 0 0 12px 12px;
+}
+
+.site-footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    position: fixed; /* or fixed if you want it always visible */
+    bottom: 0;
+    width: 100%;
 }

@@ -8,236 +8,235 @@
 </head>
 <body class="landing-bg">
     <div class="overlay"></div>
-    
-    <!-- Instructions Modal -->
-    {% if show_instructions %}
-    <div id="instructions-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Exam Instructions</h2>
-                <button class="modal-close" onclick="goBack()">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="instructions-box">
-                    <h3>FAAN Promotion Exam</h3>
-                    <p class="exam-meta">{{ total_q }} questions | 30 minutes</p>
 
-                    <div class="instructions-section">
-                        <h4><span class="info-icon">ℹ</span> Instructions:</h4>
-                        <ul class="instructions-list">
-                            <li>
-                                <strong>Choose a quiet environment:</strong> Find a distraction-free setting where you can focus on the test without interruptions. Ensure your environment is conducive to concentration.
-                            </li>
-                            <li>
-                                <strong>Verify your setup:</strong> Ensure that your computer and internet connection are functioning correctly. Use a reliable and updated web browser to access the exam.
-                            </li>
-                            <li>
-                                <strong>No pausing allowed:</strong> Once you start, the timed test cannot be paused. Be ready to go through the entire session without taking breaks.
-                            </li>
-                            <li>
-                                <strong>Read thoroughly:</strong> Read each question carefully and consider all options before selecting your answer. You can review and change your answers anytime during the exam.
-                            </li>
-                            <li>
-                                <strong>Navigation:</strong> Use the question navigator buttons to jump between questions. You can answer questions in any order.
-                            </li>
-                            <li>
-                                <strong>Track your progress:</strong> The progress bar shows your completion status. Unanswered questions are clearly marked in the navigator.
-                            </li>
-                            <li>
-                                <strong>Time management:</strong> Watch the timer carefully. A warning will appear when 5 minutes remain. Your exam will automatically submit when time expires.
-                            </li>
-                            <li>
-                                <strong>Final submission:</strong> On the last question, click "Submit" to finish the exam and view your results.
-                            </li>
-                        </ul>
-                    </div>
+<!-- Instructions Modal -->
+{% if show_instructions %}
+<div id="instructions-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="instructions-title">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="instructions-title">Exam Instructions</h2>
+            <button class="modal-close" type="button" aria-label="Close instructions" onclick="goBack()">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="instructions-box">
+                <h3>FAAN Promotion Exam</h3>
+                <p class="exam-meta">{{ total_q }} questions | 30 minutes</p>
 
-                    <div class="instructions-section">
-                        <h4><span class="warning-icon">⚠</span> Important Notes:</h4>
-                        <ul class="instructions-list">
-                            <li>Your progress is automatically saved as you answer questions</li>
-                            <li>Changing your answer will update your selection immediately</li>
-                            <li>Your exam time starts immediately after you begin</li>
-                            <li>All answers will be reviewed at the end with detailed feedback</li>
-                        </ul>
-                    </div>
-
-                    <div class="instructions-warning">
-                        <p>By clicking "Start Exam", you confirm that you have read and understood these instructions and are ready to begin.</p>
-                    </div>
+                <div class="instructions-section">
+                    <h4><span class="info-icon">ℹ</span> Instructions:</h4>
+                    <ul class="instructions-list">
+                        <li><strong>Choose a quiet environment:</strong> Find a distraction-free setting where you can focus on the test.</li>
+                        <li><strong>Verify your setup:</strong> Ensure your computer and internet connection are working correctly in a reliable browser.</li>
+                        <li><strong>No pausing allowed:</strong> Once you start, the timed test cannot be paused.</li>
+                        <li><strong>Read thoroughly:</strong> Read each question carefully; you can change answers anytime before submission.</li>
+                        <li><strong>Navigation:</strong> Use the navigator buttons to jump between questions in any order.</li>
+                        <li><strong>Track your progress:</strong> The progress bar shows completion; unanswered questions are marked.</li>
+                        <li><strong>Time management:</strong> Watch the timer. A warning appears at 5 minutes remaining; auto-submit at expiry.</li>
+                        <li><strong>Final submission:</strong> On the last question, click “Submit” to finish and view results.</li>
+                    </ul>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <form method="POST" style="flex: 1;">
-                    <button type="button" class="btn-secondary" onclick="goBack()" style="width: 100%;">Go Back</button>
-                </form>
-                <form method="POST" style="flex: 1;">
-                    <input type="hidden" name="action" value="start_exam">
-                    <button type="submit" class="btn-primary" style="width: 100%;">Start Exam</button>
-                </form>
+
+                <div class="instructions-section">
+                    <h4><span class="warning-icon">⚠</span> Important Notes:</h4>
+                    <ul class="instructions-list">
+                        <li>Your progress is automatically saved as you answer.</li>
+                        <li>Changing your answer updates your selection immediately.</li>
+                        <li>Your exam time starts as soon as you begin.</li>
+                        <li>All answers will be reviewed at the end with feedback.</li>
+                    </ul>
+                </div>
+
+                <div class="instructions-warning">
+                    <p>By clicking “Start Exam”, you confirm you’ve read and understood these instructions and are ready to begin.</p>
+                </div>
             </div>
         </div>
-    </div>
-    {% endif %}
-                <div class="container">
-            <!-- Header -->
-            <header class="exam-header">
-                <h1>FAAN Promotion Exam</h1>
-                <div id="timer" role="status" aria-live="polite">Time left: --:--</div>
-            </header>
-
-            <!-- Progress bar -->
-            <div class="progress-bar">
-                <div class="progress" style="width: {{ ((current_q + 1) / total_q) * 100 }}%;"
-                    role="progressbar" aria-valuenow="{{ ((current_q + 1) / total_q) * 100 | round(0) }}"
-                    aria-valuemin="0" aria-valuemax="100">
-                    {{ ((current_q + 1) / total_q) * 100 | round(0) }}%
-                </div>
-            </div>
-
-            <!-- Question navigator -->
-            <div id="question-nav" class="question-nav">
-                {% for nav in nav_states %}
-                    <form method="POST" style="display:inline;">
-                        <input type="hidden" name="jump_to" value="{{ nav.index }}">
-                        <button type="submit"
-                                class="nav-btn {% if nav.active %}active{% endif %} {% if nav.answered %}answered{% else %}unanswered{% endif %}"
-                                aria-label="Question {{ nav.index + 1 }} {% if nav.answered %}answered{% else %}unanswered{% endif %}"
-                                title="Question {{ nav.index + 1 }}">
-                            {{ nav.index + 1 }}
-                        </button>
-                    </form>
-                {% endfor %}
-            </div>
-
-            <!-- Question block -->
-            <div class="question-box">
-                <div class="question-header">
-                    <h2>Question {{ current_q + 1 }} of {{ total_q }}</h2>
-                </div>
-
-                <div class="question-text">
-                    <p>{{ question['question'] }}</p>
-                </div>
-
-                <!-- Options form -->
-                <form method="POST" class="options-form">
-                    <fieldset>
-                        <legend class="sr-only">Select your answer</legend>
-                        {% if question['option_c'] == "" and question['option_d'] == "" %}
-                            {# True/False case: only show A and B #}
-                            {% for opt in ['option_a','option_b'] %}
-                            <label class="option">
-                                <input type="radio" name="option" value="{{ opt }}"
-                                    {% if saved_answer and saved_answer['selected_option'] == opt %}checked{% endif %}>
-                                <span class="option-text">{{ question[opt] }}</span>
-                            </label>
-                            {% endfor %}
-                        {% else %}
-                            {# Normal case: show all four options #}
-                            {% for opt in ['option_a','option_b','option_c','option_d'] %}
-                            <label class="option">
-                                <input type="radio" name="option" value="{{ opt }}"
-                                    {% if saved_answer and saved_answer['selected_option'] == opt %}checked{% endif %}>
-                                <span class="option-text">{{ question[opt] }}</span>
-                            </label>
-                            {% endfor %}
-                        {% endif %}
-                    </fieldset>
-
-                    <!-- Navigation buttons -->
-                    <div class="nav-buttons">
-                        <button type="submit" name="action" value="previous" class="nav-btn back-btn">
-                            ← Back
-                        </button>
-                        {% if current_q + 1 == total_q %}
-                        <button type="submit" name="action" value="next" class="nav-btn next-btn">
-                            Submit
-                        </button>
-                        {% else %}
-                        <button type="submit" name="action" value="next" class="nav-btn next-btn">
-                            Next →
-                        </button>
-                        {% endif %}
-                    </div>
-                </form>
-            </div>
-
-            <!-- Logout button (POST with CSRF) -->
-            <form id="logout-form" action="{{ url_for('logout') }}" method="post" class="logout-form">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <button type="submit" class="logout-btn">Logout</button>
+        <div class="modal-footer">
+            <button type="button" class="btn-secondary" onclick="goBack()">Go Back</button>
+            <form method="POST">
+                <input type="hidden" name="action" value="start_exam">
+                <button type="submit" class="btn-primary">Start Exam</button>
             </form>
         </div>
-   
-        <!-- Timer + Navigator script -->
-    <script>
-        let totalSeconds = {{ remaining }};
-        let examStarted = {% if show_instructions %}false{% else %}true{% endif %};
+    </div>
+</div>
+{% endif %}
+<div class="admin-container">
+    <!-- Header -->
+    <header class="exam-header">
+        <h1>FAAN Promotion Exam</h1>
+        <div id="timer" role="status" aria-live="polite">
+            Time left: --:--
+        </div>
+    </header>
 
-        function goBack() {
-            // Submit the logout form (POST) so CSRF protection applies
-            var f = document.getElementById('logout-form');
-            if (f) { f.submit(); }
-            else { window.location.href = '/'; }
+    <!-- Progress bar -->
+    {% set pct = (((current_q or 0) + 1) / (total_q or 1)) * 100 %}
+    <div class="progress-bar" aria-label="Exam progress">
+        <div class="progress"
+             style="width: {{ pct }}%;"
+             role="progressbar"
+             aria-valuenow="{{ pct | round(0) }}"
+             aria-valuemin="0"
+             aria-valuemax="100">
+            {{ pct | round(0) }}%
+        </div>
+    </div>
+
+    <!-- Question navigator -->
+    <nav id="question-nav" class="question-nav" aria-label="Question navigation">
+        {% for nav in nav_states %}
+        <form method="POST" style="display:inline;">
+            <input type="hidden" name="jump_to" value="{{ nav.index }}">
+            <button type="submit"
+                    class="nav-btn {% if nav.active %}active{% endif %} {% if nav.answered %}answered{% else %}unanswered{% endif %}"
+                    aria-label="Question {{ nav.index + 1 }} {% if nav.answered %}answered{% else %}unanswered{% endif %}"
+                    title="Question {{ nav.index + 1 }}">
+                {{ nav.index + 1 }}
+            </button>
+        </form>
+        {% endfor %}
+    </nav>
+
+    <!-- Question block -->
+    <div class="question-box">
+        <div class="question-header">
+            <h2>Question {{ current_q + 1 }} of {{ total_q }}</h2>
+        </div>
+
+        <div class="question-text">
+            <p>{{ question['question'] }}</p>
+        </div>
+
+        <!-- Options form -->
+        <form method="POST" class="options-form">
+            <fieldset>
+                <legend class="sr-only">Select your answer</legend>
+                {% if question['option_c'] == "" and question['option_d'] == "" %}
+                    {# True/False case: only show A and B #}
+                    {% for opt in ['option_a','option_b'] %}
+                    <label class="option">
+                        <input type="radio" name="option" value="{{ opt }}"
+                               {% if saved_answer and saved_answer['selected_option'] == opt %}checked{% endif %} required>
+                        <span class="option-text">{{ question[opt] }}</span>
+                    </label>
+                    {% endfor %}
+                {% else %}
+                    {# Normal case: show all four options #}
+                    {% for opt in ['option_a','option_b','option_c','option_d'] %}
+                    <label class="option">
+                        <input type="radio" name="option" value="{{ opt }}"
+                               {% if saved_answer and saved_answer['selected_option'] == opt %}checked{% endif %} required>
+                        <span class="option-text">{{ question[opt] }}</span>
+                    </label>
+                    {% endfor %}
+                {% endif %}
+            </fieldset>
+
+            <!-- Navigation buttons -->
+            <div class="nav-buttons">
+                <button type="submit" name="action" value="previous" class="back-btn">
+                    ← Back
+                </button>
+                {% if current_q + 1 == total_q %}
+                <button type="submit" name="action" value="next" class="next-btn">
+                    Submit
+                </button>
+                {% else %}
+                <button type="submit" name="action" value="next" class="next-btn">
+                    Next →
+                </button>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+    <!-- Logout button -->
+    <form id="logout-form" action="{{ url_for('logout') }}" method="post" class="logout-form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+</div>
+<!-- Timer + Navigator script -->
+<script>
+    let totalSeconds = {{ remaining }};
+    let examStarted = {% if show_instructions %}false{% else %}true{% endif %};
+
+    function goBack() {
+        // Submit the logout form (POST) so CSRF protection applies
+        const f = document.getElementById('logout-form');
+        if (f) {
+            f.submit();
+        } else {
+            window.location.href = '/';
+        }
+    }
+
+    function updateTimer() {
+        if (!examStarted) return;
+
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        const padded = seconds < 10 ? '0' : '';
+        const timerEl = document.getElementById('timer');
+
+        if (timerEl) {
+            timerEl.textContent = `Time left: ${minutes}:${padded}${seconds}`;
         }
 
-        function updateTimer() {
-            if (!examStarted) return;
-
-            const minutes = Math.floor(totalSeconds / 60);
-            const seconds = totalSeconds % 60;
-            const padded = seconds < 10 ? '0' : '';
-            document.getElementById('timer').textContent =
-                `Time left: ${minutes}:${padded}${seconds}`;
-
-            if (totalSeconds === 300) {
-                alert('⚠ Warning: Only 5 minutes remaining!');
-                document.getElementById('timer').classList.add('warning');
-            }
-
-            if (totalSeconds <= 0) {
-                window.location.href = '/results';
-            } else {
-                totalSeconds--;
-                setTimeout(updateTimer, 1000);
+        if (totalSeconds === 300) {
+            alert('⚠ Warning: Only 5 minutes remaining!');
+            if (timerEl) {
+                timerEl.classList.add('warning');
             }
         }
 
-        // Start timer if instructions already shown
-        if (examStarted) {
-            updateTimer();
+        if (totalSeconds <= 0) {
+            window.location.href = '/results';
+        } else {
+            totalSeconds--;
+            setTimeout(updateTimer, 1000);
+        }
+    }
+
+    // Start timer if instructions already shown
+    if (examStarted) {
+        updateTimer();
+    }
+
+    // Question navigator: auto-scroll to the active question and persist manual scroll
+    document.addEventListener('DOMContentLoaded', function () {
+        const nav = document.getElementById('question-nav');
+        if (!nav) return;
+
+        // Restore previously saved scroll position
+        const saved = sessionStorage.getItem('qnav-scroll');
+        if (saved !== null) {
+            try {
+                nav.scrollLeft = parseInt(saved, 10);
+            } catch (e) {
+                /* ignore parse errors */
+            }
+        } else {
+            // Center the active button if no saved state exists
+            const activeBtn = nav.querySelector('.nav-btn.active');
+            if (activeBtn && typeof activeBtn.scrollIntoView === 'function') {
+                activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
         }
 
-        // Question navigator: auto-scroll to the active question and persist manual scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const nav = document.getElementById('question-nav');
-            if (!nav) return;
+        // Persist scroll position when the user scrolls the navigator
+        nav.addEventListener('scroll', function () {
+            sessionStorage.setItem('qnav-scroll', nav.scrollLeft);
+        }, { passive: true });
 
-            // If there's a previously saved scroll position, restore it
-            const saved = sessionStorage.getItem('qnav-scroll');
-            if (saved !== null) {
-                try { nav.scrollLeft = parseInt(saved, 10); } catch (e) { /* ignore */ }
-            } else {
-                // Center the active button if no saved state exists
-                const activeBtn = nav.querySelector('.nav-btn.active');
-                if (activeBtn && typeof activeBtn.scrollIntoView === 'function') {
-                    activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-                }
-            }
-
-            // Persist scroll position when the user scrolls the navigator
-            nav.addEventListener('scroll', function() {
+        // Save nav scroll before any form submits
+        document.querySelectorAll('form').forEach(function (form) {
+            form.addEventListener('submit', function () {
                 sessionStorage.setItem('qnav-scroll', nav.scrollLeft);
-            }, { passive: true });
-
-            // Save nav scroll before any form submits (so next page load can restore)
-            document.querySelectorAll('form').forEach(function(form) {
-                form.addEventListener('submit', function() {
-                    sessionStorage.setItem('qnav-scroll', nav.scrollLeft);
-                });
             });
         });
-    </script>
+    });
+</script>
 </body>
 </html>

@@ -9,48 +9,50 @@
 <body class="landing-bg">
     <div class="overlay"></div>
 
-    <div class="login-card">
-        <h1>Admin Login</h1>
-        <p class="login-subtitle">Login to manage users & questions.</p>
+    <div class="login-container">
+        <div class="login-card">
+            <h1>Admin Login</h1>
+            <p class="login-subtitle">Login to manage users &amp; questions.</p>
 
-        {% if error %}
-            <div class="error-message" role="alert">
-                {{ error }}
-            </div>
-        {% endif %}
+            {% if error %}
+                <div class="error-message" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
 
-        <form method="POST" action="">
-            <div class="form-group">
-                <label for="username"></label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    placeholder="Enter your username"
-                    required
-                    autocomplete="username"
-                >
-            </div>
+            <form method="POST" action="">
+                <div class="form-group">
+                    <label for="username" class="sr-only"></label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        required
+                        autocomplete="username"
+                    >
+                </div>
 
-            <div class="form-group">
-                <label for="pin"></label>
-                <input
-                    type="password"
-                    id="pin"
-                    name="pin"
-                    placeholder="Enter your PIN"
-                    required
-                    autocomplete="current-password"
-                >
-            </div>
+                <div class="form-group">
+                    <label for="pin" class="sr-only"></label>
+                    <input
+                        type="password"
+                        id="pin"
+                        name="pin"
+                        placeholder="Enter your PIN"
+                        required
+                        autocomplete="current-password"
+                    >
+                </div>
 
-            <button type="submit" class="btn-primary">Login</button>
-        </form>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
 
-        <hr>
-        <p>
-            <a href="{{ url_for('homepage') }}">Back to Homepage</a>
-        </p>
+            <hr>
+            <p>
+                <a href="{{ url_for('homepage') }}" class="btn-secondary">Back to Homepage</a>
+            </p>
+        </div>
     </div>
 </body>
 </html>
